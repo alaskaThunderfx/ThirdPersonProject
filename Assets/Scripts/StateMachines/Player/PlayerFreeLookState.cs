@@ -3,9 +3,13 @@ using UnityEngine;
 
 namespace StateMachines.Player
 {
-    public class PlayerTestState : PlayerBaseState
+    public class PlayerFreeLookState : PlayerBaseState
     {
-        public PlayerTestState(PlayerStateMachine stateMachine) : base(stateMachine)
+        // Private variables
+        private readonly int _freeLookSpeedHash = Animator.StringToHash("FreeLookSpeed");
+        private const float AnimatorDampTime = 0.1f;
+
+        public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
         {
         }
 
@@ -21,18 +25,19 @@ namespace StateMachines.Player
 
             if (stateMachine.InputReader.MovementValue == Vector2.zero)
             {
-                stateMachine.Animator.SetFloat("FreeLookSpeed", 0, 0.1f, deltaTime);
+                stateMachine.Animator.SetFloat(_freeLookSpeedHash, 0, AnimatorDampTime, deltaTime);
                 return;
             }
 
-            stateMachine.Animator.SetFloat("FreeLookSpeed", 1, 0.1f, deltaTime);
-            stateMachine.transform.rotation = Quaternion.LookRotation(movement);
+            stateMachine.Animator.SetFloat(_freeLookSpeedHash, 1, AnimatorDampTime, deltaTime);
+
+            FaceMovementDirection(movement, deltaTime);
         }
 
         public override void Exit()
         {
         }
-        
+
         // Private methods
         private Vector3 CalculateMovement()
         {
@@ -41,12 +46,18 @@ namespace StateMachines.Player
 
             forward.y = 0;
             right.y = 0;
-            
+
             forward.Normalize();
             right.Normalize();
 
             return forward * stateMachine.InputReader.MovementValue.y +
                    right * stateMachine.InputReader.MovementValue.x;
+        }
+
+        private void FaceMovementDirection(Vector3 movement, float deltaTime)
+        {
+            stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation,
+                Quaternion.LookRotation(movement), deltaTime * stateMachine.RotationDamping);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace StateMachines.Player
         [field: SerializeField] public CharacterController CharacterController { get; private set; }
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
+        [field: SerializeField] public float RotationDamping { get; private set; }
         
         // Public variables
         public Transform MainCameraTransform { get; private set; }
@@ -19,7 +20,7 @@ namespace StateMachines.Player
         {
             if (Camera.main != null) MainCameraTransform = Camera.main.transform;
 
-            SwitchState(new PlayerTestState(this));
+            SwitchState(new PlayerFreeLookState(this));
         }
         
         // Private methods
