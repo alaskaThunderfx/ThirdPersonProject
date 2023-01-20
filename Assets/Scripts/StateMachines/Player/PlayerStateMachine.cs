@@ -4,12 +4,10 @@ namespace StateMachines.Player
 {
     public class PlayerStateMachine : StateMachine
     {
+        // Unity built-in methods
         private void Start()
         {
-        }
-
-        private void Update()
-        {
+            SwitchState(new PlayerTestState(this));
         }
     }
 }
