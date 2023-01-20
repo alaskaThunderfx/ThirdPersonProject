@@ -15,12 +15,8 @@ namespace StateMachines.Player
 
         public override void Tick(float deltaTime)
         {
-            var movement = new Vector3();
-            
-            movement.x = stateMachine.InputReader.MovementValue.x;
-            movement.y = 0;
-            movement.z = stateMachine.InputReader.MovementValue.y;
-            
+            var movement = CalculateMovement();
+
             stateMachine.CharacterController.Move(movement * (stateMachine.FreeLookMovementSpeed * deltaTime));
 
             if (stateMachine.InputReader.MovementValue == Vector2.zero)
@@ -35,6 +31,22 @@ namespace StateMachines.Player
 
         public override void Exit()
         {
+        }
+        
+        // Private methods
+        private Vector3 CalculateMovement()
+        {
+            var forward = stateMachine.MainCameraTransform.forward;
+            var right = stateMachine.MainCameraTransform.right;
+
+            forward.y = 0;
+            right.y = 0;
+            
+            forward.Normalize();
+            right.Normalize();
+
+            return forward * stateMachine.InputReader.MovementValue.y +
+                   right * stateMachine.InputReader.MovementValue.x;
         }
     }
 }
