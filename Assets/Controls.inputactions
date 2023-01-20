@@ -1,0 +1,73 @@
+{
+    "name": "Controls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "e104dafe-9374-4c92-919f-6321c7c98555",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "5ca672dd-3a0c-42f2-b9b2-3a29725efd0c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "197c210a-4f7b-46c7-8859-ee511ca771e4",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse & Keyboard",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f86e07e4-6f55-4a7c-ba73-3057ab6cdb2e",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Game Pad",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Mouse & Keyboard",
+            "bindingGroup": "Mouse & Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Game Pad",
+            "bindingGroup": "Game Pad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
