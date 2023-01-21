@@ -1,5 +1,6 @@
 using StateMachines.Player;
 using UnityEngine;
+using UnityEngine.Networking.PlayerConnection;
 
 namespace StateMachines.Player
 {
@@ -15,6 +16,7 @@ namespace StateMachines.Player
 
         public override void Enter()
         {
+            stateMachine.InputReader.TargetEvent += OnTarget;
         }
 
         public override void Tick(float deltaTime)
@@ -36,9 +38,15 @@ namespace StateMachines.Player
 
         public override void Exit()
         {
+            stateMachine.InputReader.TargetEvent -= OnTarget;
         }
 
         // Private methods
+        private void OnTarget()
+        {
+            stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
+        }
+        
         private Vector3 CalculateMovement()
         {
             var forward = stateMachine.MainCameraTransform.forward;
