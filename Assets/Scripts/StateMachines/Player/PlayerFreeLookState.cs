@@ -44,6 +44,8 @@ namespace StateMachines.Player
         // Private methods
         private void OnTarget()
         {
+            if (!stateMachine.Targeter.SelectTarget()) return;
+            
             stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
         }
         

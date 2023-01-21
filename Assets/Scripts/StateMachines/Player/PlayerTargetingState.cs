@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEngine;
 
 namespace StateMachines.Player
 {
@@ -15,7 +16,7 @@ namespace StateMachines.Player
 
         public override void Tick(float deltaTime)
         {
-            
+            Debug.Log(stateMachine.Targeter.CurrentTarget.name);
         }
 
         public override void Exit()
@@ -26,6 +27,8 @@ namespace StateMachines.Player
         // Private methods
         private void OnCancel()
         {
+            stateMachine.Targeter.Cancel();
+            
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
         }
     }

@@ -7,21 +7,37 @@ namespace Combat.Targeting
     public class Targeter : MonoBehaviour
     {
         // Public variables
-        public List<Target> targets = new List<Target>();
+        private List<Target> _targets = new List<Target>();
+        public Target CurrentTarget { get; private set; }
 
         // Unity built-in methods
         private void OnTriggerEnter(Collider other)
         {
             if (!other.TryGetComponent<Target>(out var target)) return;
 
-            targets.Add(target);
+            _targets.Add(target);
         }
 
         private void OnTriggerExit(Collider other)
         {
             if (!other.TryGetComponent<Target>(out var target)) return;
             
-            targets.Remove(target);
+            _targets.Remove(target);
+        }
+        
+        // Public methods
+        public bool SelectTarget()
+        {
+            if (_targets.Count == 0) return false;
+
+            CurrentTarget = _targets[0];
+
+            return true;
+        }
+
+        public void Cancel()
+        {
+            CurrentTarget = null;
         }
     }
 }
