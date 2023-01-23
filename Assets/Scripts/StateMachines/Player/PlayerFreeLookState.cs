@@ -25,8 +25,8 @@ namespace StateMachines.Player
         public override void Tick(float deltaTime)
         {
             var movement = CalculateMovement();
-
-            stateMachine.CharacterController.Move(movement * (stateMachine.FreeLookMovementSpeed * deltaTime));
+            
+            Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
 
             if (stateMachine.InputReader.MovementValue == Vector2.zero)
             {
