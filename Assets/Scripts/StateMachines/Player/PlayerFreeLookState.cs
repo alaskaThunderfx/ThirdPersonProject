@@ -18,14 +18,14 @@ namespace StateMachines.Player
         public override void Enter()
         {
             stateMachine.InputReader.TargetEvent += OnTarget;
-            
+
             stateMachine.Animator.Play(_freeLookBlendTreeHash);
         }
 
         public override void Tick(float deltaTime)
         {
             var movement = CalculateMovement();
-            
+
             Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
 
             if (stateMachine.InputReader.MovementValue == Vector2.zero)
@@ -48,10 +48,10 @@ namespace StateMachines.Player
         private void OnTarget()
         {
             if (!stateMachine.Targeter.SelectTarget()) return;
-            
+
             stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
         }
-        
+
         private Vector3 CalculateMovement()
         {
             var forward = stateMachine.MainCameraTransform.forward;
