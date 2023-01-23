@@ -76,6 +76,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3976025226052079961}
   - component: {fileID: 4791690639330117229}
+  - component: {fileID: 1927498478911046034}
+  - component: {fileID: 5032730346116122247}
   m_Layer: 0
   m_Name: WeaponLogic
   m_TagString: Untagged
@@ -121,6 +123,46 @@ CapsuleCollider:
   m_Height: 1.5475194
   m_Direction: 2
   m_Center: {x: 0.0123479245, y: -0.01352152, z: 0.11294054}
+--- !u!114 &1927498478911046034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367883947398918743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e21f5bf47b9c414f9b5fa0205905c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCollider: {fileID: 2206224663095748476}
+--- !u!54 &5032730346116122247
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367883947398918743}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &388699070376894052
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +340,7 @@ GameObject:
   - component: {fileID: 1041212372407616173}
   - component: {fileID: 6065987388769461471}
   - component: {fileID: 2206224663095748476}
+  - component: {fileID: 1915247470883757057}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -449,6 +492,19 @@ CharacterController:
   m_SkinWidth: 0.023
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.875, z: 0}
+--- !u!114 &1915247470883757057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188063403641446746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87468341bed58644bae4743ba345a552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &1356672514222568830
 GameObject:
   m_ObjectHideFlags: 0
