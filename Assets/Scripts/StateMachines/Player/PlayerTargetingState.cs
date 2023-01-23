@@ -21,6 +21,12 @@ namespace StateMachines.Player
 
         public override void Tick(float deltaTime)
         {
+            if (stateMachine.InputReader.IsAttacking)
+            {
+                stateMachine.SwitchState(new PlayerAttackingState(stateMachine));
+                return;
+            }
+
             if (stateMachine.Targeter.CurrentTarget == null)
             {
                 stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
@@ -28,7 +34,7 @@ namespace StateMachines.Player
             }
 
             var movement = CalculateMovement();
-            
+
             Move(movement * stateMachine.TargetingMovementSpeed, deltaTime);
 
             UpdateAnimator(deltaTime);
@@ -80,7 +86,6 @@ namespace StateMachines.Player
                 float value = stateMachine.InputReader.MovementValue.x > 0 ? 1 : -1;
                 stateMachine.Animator.SetFloat(_targetingRightTreeHash, value, 0.1f, deltaTime);
             }
-            
         }
     }
 }

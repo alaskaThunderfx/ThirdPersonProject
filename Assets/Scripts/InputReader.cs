@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 public class InputReader : MonoBehaviour, Controls.IPlayerActions
 {
     // Public variables
+    public bool IsAttacking { get; private set; }
     public Vector2 MovementValue { get; private set; }
-    
+
     // Public events
     public event Action JumpEvent;
     public event Action DodgeEvent;
@@ -34,14 +35,14 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public void OnJump(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        
+
         JumpEvent?.Invoke();
     }
 
     public void OnDodge(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        
+
         DodgeEvent?.Invoke();
     }
 
@@ -52,20 +53,31 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        
     }
 
     public void OnTarget(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        
+
         TargetEvent?.Invoke();
     }
 
     public void OnCancel(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        
+
         CancelEvent?.Invoke();
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            IsAttacking = true;
+        }
+        else if (context.canceled)
+        {
+            IsAttacking = false;
+        }
     }
 }

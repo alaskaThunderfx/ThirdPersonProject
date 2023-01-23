@@ -1,6 +1,4 @@
-using StateMachines.Player;
 using UnityEngine;
-using UnityEngine.Networking.PlayerConnection;
 
 namespace StateMachines.Player
 {
@@ -24,6 +22,12 @@ namespace StateMachines.Player
 
         public override void Tick(float deltaTime)
         {
+            if (stateMachine.InputReader.IsAttacking)
+            {
+                stateMachine.SwitchState(new PlayerAttackingState(stateMachine));
+                return;
+            }
+            
             var movement = CalculateMovement();
 
             Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
