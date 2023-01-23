@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
@@ -10,10 +11,16 @@ namespace Combat.Targeting
         [SerializeField] private CinemachineTargetGroup cineTargetGroup;
         
         // Public variables
+        private Camera _mainCamera;
         private List<Target> _targets = new();
         public Target CurrentTarget { get; private set; }
 
         // Unity built-in methods
+        private void Start()
+        {
+            _mainCamera = Camera.main;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (!other.TryGetComponent<Target>(out var target)) return;
@@ -26,7 +33,6 @@ namespace Combat.Targeting
         {
             if (!other.TryGetComponent<Target>(out var target)) return;
             
-            // _targets.Remove(target);
             RemoveTarget(target);
         }
 
@@ -35,7 +41,29 @@ namespace Combat.Targeting
         {
             if (_targets.Count == 0) return false;
 
-            CurrentTarget = _targets[0];
+            Target closestTarget = null;
+            var closestTargetDistance = Mathf.Infinity;
+
+            foreach (var target in _targets)
+            {
+                Vector2 viewPos = _mainCamera.WorldToViewportPoint(target.transform.position);
+                
+                if (viewPos.x is < 0 or > 1 || viewPos.y is < 0 or > 1)
+                {
+                    continue;
+                }
+
+                var toCenter = viewPos - new Vector2(.5f, .5f);
+                if (toCenter.sqrMagnitude < closestTargetDistance)
+                {
+                    closestTarget = target;
+                    closestTargetDistance = toCenter.sqrMagnitude;
+                }
+            }
+
+            if (closestTarget == null) return false;
+
+            CurrentTarget = closestTarget;
             cineTargetGroup.AddMember(CurrentTarget.transform, 1, 2);
 
             return true;
