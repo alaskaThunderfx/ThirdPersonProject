@@ -13,6 +13,7 @@ namespace StateMachines.Player
 
         public override void Enter()
         {
+            stateMachine.Weapon.SetAttack(_attack.Damage);
             stateMachine.Animator.CrossFadeInFixedTime(_attack.AnimationName, _attack.TransitionDuration);
         }
 

@@ -1,6 +1,6 @@
+using Combat;
 using Combat.Targeting;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 namespace StateMachines.Player
 {
@@ -13,6 +13,7 @@ namespace StateMachines.Player
         [field: SerializeField] public Targeter Targeter { get; private set; }
         [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
         [field: SerializeField] public Attack[] Attacks { get; private set; }
+        [field: SerializeField] public WeaponDamage Weapon  { get; private set; }
         [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
         [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
         [field: SerializeField] public float RotationDamping { get; private set; }
