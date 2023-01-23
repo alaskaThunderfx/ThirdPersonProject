@@ -26,9 +26,10 @@ namespace Combat.Targeting
         {
             if (!other.TryGetComponent<Target>(out var target)) return;
             
-            _targets.Remove(target);
+            // _targets.Remove(target);
+            RemoveTarget(target);
         }
-        
+
         // Public methods
         public bool SelectTarget()
         {
