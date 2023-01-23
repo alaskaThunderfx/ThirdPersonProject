@@ -20,7 +20,8 @@ namespace StateMachines.Player
 
         public override void Tick(float deltaTime)
         {
-            Debug.Log(stateMachine.Targeter.CurrentTarget.name);
+            if (stateMachine.Targeter.CurrentTarget != null) return;
+            stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
         }
 
         public override void Exit()
