@@ -57,6 +57,8 @@ namespace StateMachines.Enemy
 
         private bool IsInAttackRange()
         {
+            if (stateMachine.Player.IsDead) return false;
+            
             var playerDistanceSqr =
                 (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
 

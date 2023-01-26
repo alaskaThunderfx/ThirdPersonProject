@@ -13,6 +13,8 @@ namespace Combat
         public event Action OnTakeDamage;
         public event Action OnDie;
 
+        public bool IsDead => _health == 0;
+
         private void Start()
         {
             _health = maxHealth;
