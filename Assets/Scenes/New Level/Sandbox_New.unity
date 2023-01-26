@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 2
+  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
   m_LightLayerMask: 1
@@ -427,7 +427,7 @@ MonoBehaviour:
   m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 1
+  m_SoftShadowQuality: 2
 --- !u!1001 &174495328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2906,12 +2906,12 @@ PrefabInstance:
     - target: {fileID: 2576949802614180766, guid: 883610d2f68f1d445bddd42329839928,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00000019254587
+      value: 0.00000005133712
       objectReference: {fileID: 0}
     - target: {fileID: 2576949802614180766, guid: 883610d2f68f1d445bddd42329839928,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000071525574
+      value: 0.00000047683716
       objectReference: {fileID: 0}
     - target: {fileID: 2717098090054709461, guid: 883610d2f68f1d445bddd42329839928,
         type: 3}
@@ -3246,7 +3246,7 @@ PrefabInstance:
     - target: {fileID: 2427315173828830081, guid: 1844919012c8c9e47a41f4d9af2ad5b1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.7915654
+      value: 9.81
       objectReference: {fileID: 0}
     - target: {fileID: 2427315173828830081, guid: 1844919012c8c9e47a41f4d9af2ad5b1,
         type: 3}
