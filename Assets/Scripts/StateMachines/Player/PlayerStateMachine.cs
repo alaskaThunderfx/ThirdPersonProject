@@ -14,6 +14,7 @@ namespace StateMachines.Player
         [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
         [field: SerializeField] public Attack[] Attacks { get; private set; }
         [field: SerializeField] public WeaponDamage Weapon  { get; private set; }
+        [field: SerializeField] public Health Health  { get; private set; }
         [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
         [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
         [field: SerializeField] public float RotationDamping { get; private set; }
@@ -30,7 +31,20 @@ namespace StateMachines.Player
             SwitchState(new PlayerFreeLookState(this));
         }
         
-        // Private methods
+        private void OnEnable()
+        {
+            Health.OnTakeDamage += HandleTakeDamage;
+        }
+
+        private void OnDisable()
+        {
+            Health.OnTakeDamage -= HandleTakeDamage;
+        }
+
+        private void HandleTakeDamage()
+        {
+            SwitchState(new PlayerImpactState(this));
+        }
         
     }
 }

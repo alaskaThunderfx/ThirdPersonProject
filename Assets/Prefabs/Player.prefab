@@ -411,6 +411,7 @@ MonoBehaviour:
     <Damage>k__BackingField: 20
     <Knockback>k__BackingField: 25
   <Weapon>k__BackingField: {fileID: 1927498478911046034}
+  <Health>k__BackingField: {fileID: 1915247470883757057}
   <FreeLookMovementSpeed>k__BackingField: 6
   <TargetingMovementSpeed>k__BackingField: 5
   <RotationDamping>k__BackingField: 10
