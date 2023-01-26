@@ -13,14 +13,17 @@ namespace StateMachines.Enemy
 
         public override void Enter()
         {
-            stateMachine.Weapon.SetAttack(stateMachine.AttackDamage);
+            stateMachine.Weapon.SetAttack(stateMachine.AttackDamage, stateMachine.AttackKnockback);
             
             stateMachine.Animator.CrossFadeInFixedTime(_attackHash, CrossFadeDuration);
         }
 
         public override void Tick(float deltaTime)
         {
-            
+            if (GetNormalizedTime(stateMachine.Animator) >= 1)
+            {
+                stateMachine.SwitchState(new EnemyChasingState(stateMachine));
+            }
         }
 
         public override void Exit()

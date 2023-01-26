@@ -10,6 +10,7 @@ namespace Combat
         [SerializeField] private Collider myCollider;
 
         private int _damage;
+        private float _knockback;
 
         private List<Collider> _alreadyCollidedWith = new();
 
@@ -30,11 +31,18 @@ namespace Combat
             {
                 health.DealDamage(_damage);
             }
+
+            if (other.TryGetComponent(out ForceReceiver forceReceiver))
+            {
+                var direction = (other.transform.position - myCollider.transform.position).normalized;
+                forceReceiver.AddForce(direction * _knockback);
+            }
         }
 
-        public void SetAttack(int damage)
+        public void SetAttack(int damage, float knockback)
         {
             _damage = damage;
+            _knockback = knockback;
         }
     }
 }
