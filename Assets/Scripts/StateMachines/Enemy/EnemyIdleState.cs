@@ -4,7 +4,7 @@ namespace StateMachines.Enemy
 {
     public class EnemyIdleState : EnemyBaseState
     {
-        private readonly int _locomationHash = Animator.StringToHash("Locomotion");
+        private readonly int _locomotionHash = Animator.StringToHash("Locomotion");
         private readonly int _speedHash = Animator.StringToHash("Speed");
         private const float CrossFadeDuration = 0.1f;
         private const float AnimatorDampTime = 0.1f;
@@ -15,7 +15,7 @@ namespace StateMachines.Enemy
 
         public override void Enter()
         {
-            stateMachine.Animator.CrossFadeInFixedTime(_locomationHash, CrossFadeDuration);
+            stateMachine.Animator.CrossFadeInFixedTime(_locomotionHash, CrossFadeDuration);
         }
 
         public override void Tick(float deltaTime)
@@ -24,8 +24,7 @@ namespace StateMachines.Enemy
             
             if (IsInChaseRange())
             {
-                // Transition to chasing state.
-                Debug.Log("In range");
+                stateMachine.SwitchState(new EnemyChasingState(stateMachine));
                 return;
             }
             
