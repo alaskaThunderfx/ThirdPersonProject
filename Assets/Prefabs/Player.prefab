@@ -393,7 +393,7 @@ MonoBehaviour:
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 15
     <Damage>k__BackingField: 10
-    <Knockback>k__BackingField: 15
+    <Knockback>k__BackingField: 5
   - <AnimationName>k__BackingField: Attack2
     <TransitionDuration>k__BackingField: 0.1
     <ComboStateIndex>k__BackingField: 2
@@ -401,7 +401,7 @@ MonoBehaviour:
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 15
     <Damage>k__BackingField: 15
-    <Knockback>k__BackingField: 20
+    <Knockback>k__BackingField: 7
   - <AnimationName>k__BackingField: Attack3
     <TransitionDuration>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: -1
@@ -409,7 +409,7 @@ MonoBehaviour:
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 20
     <Damage>k__BackingField: 20
-    <Knockback>k__BackingField: 25
+    <Knockback>k__BackingField: 15
   <Weapon>k__BackingField: {fileID: 1927498478911046034}
   <Health>k__BackingField: {fileID: 1915247470883757057}
   <FreeLookMovementSpeed>k__BackingField: 6

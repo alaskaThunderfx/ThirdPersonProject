@@ -10,6 +10,7 @@ namespace Combat
         private int _health;
 
         public event Action OnTakeDamage;
+        public event Action OnDie;
 
         private void Start()
         {
@@ -19,11 +20,16 @@ namespace Combat
         public void DealDamage(int damage)
         {
             if (_health == 0) return;
-
-            _health = Mathf.Max(_health - damage, 0);
             
+            _health = Mathf.Max(_health - damage, 0);
+
             OnTakeDamage?.Invoke();
             
+            if (_health == 0)
+            {
+                OnDie?.Invoke();
+            }
+
             Debug.Log(_health);
         }
     }
