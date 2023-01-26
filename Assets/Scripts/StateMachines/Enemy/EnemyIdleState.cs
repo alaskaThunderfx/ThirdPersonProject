@@ -28,6 +28,8 @@ namespace StateMachines.Enemy
                 return;
             }
             
+            FacePlayer();
+            
             stateMachine.Animator.SetFloat(_speedHash, 0, AnimatorDampTime, deltaTime);
         }
 

@@ -25,8 +25,14 @@ namespace StateMachines.Enemy
                 stateMachine.SwitchState(new EnemyIdleState(stateMachine));
                 return;
             }
+            else if (IsInAttackRange())
+            {
+                stateMachine.SwitchState(new EnemyAttackingState(stateMachine));
+                return;
+            }
 
             MoveToPlayer(deltaTime);
+            FacePlayer();
 
             stateMachine.Animator.SetFloat(_speedHash, 1f, AnimatorDampTime, deltaTime);
         }
@@ -44,6 +50,14 @@ namespace StateMachines.Enemy
             Move(stateMachine.Agent.desiredVelocity.normalized * stateMachine.MovementSpeed, deltaTime);
 
             stateMachine.Agent.velocity = stateMachine.CharacterController.velocity;
+        }
+
+        private bool IsInAttackRange()
+        {
+            var playerDistanceSqr =
+                (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
+
+            return playerDistanceSqr <= stateMachine.AttackRange * stateMachine.AttackRange;
         }
     }
 }

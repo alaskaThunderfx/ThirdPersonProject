@@ -22,6 +22,16 @@ namespace StateMachines.Enemy
                 (motion + stateMachine.ForceReceiver.Movement) * deltaTime);
         }
 
+        protected void FacePlayer()
+        {
+            if (stateMachine.Player == null) return;
+
+            var lookPos = stateMachine.Player.transform.position - stateMachine.transform.position;
+            lookPos.y = 0;
+
+            stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+        }
+
         protected bool IsInChaseRange()
         {
             var playerDistanceSquare = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
