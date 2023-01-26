@@ -13,6 +13,8 @@ namespace StateMachines.Enemy
 
         public override void Enter()
         {
+            stateMachine.Weapon.SetAttack(stateMachine.AttackDamage);
+            
             stateMachine.Animator.CrossFadeInFixedTime(_attackHash, CrossFadeDuration);
         }
 
