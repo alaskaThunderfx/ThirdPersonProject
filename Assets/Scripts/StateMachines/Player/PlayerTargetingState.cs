@@ -28,6 +28,12 @@ namespace StateMachines.Player
                 return;
             }
 
+            if (stateMachine.InputReader.IsBlocking)
+            {
+                stateMachine.SwitchState(new PlayerBlockingState(stateMachine));
+                return;
+            }
+
             if (stateMachine.Targeter.CurrentTarget == null)
             {
                 stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));

@@ -8,6 +8,7 @@ namespace Combat
         [SerializeField] private int maxHealth = 100;
 
         private int _health;
+        private bool _isInvulnerable;
 
         public event Action OnTakeDamage;
         public event Action OnDie;
@@ -17,9 +18,16 @@ namespace Combat
             _health = maxHealth;
         }
 
+        public void SetInvulnerable(bool isInvulnerable)
+        {
+            _isInvulnerable = isInvulnerable;
+        }
+
         public void DealDamage(int damage)
         {
             if (_health == 0) return;
+
+            if (_isInvulnerable) return;
             
             _health = Mathf.Max(_health - damage, 0);
 
