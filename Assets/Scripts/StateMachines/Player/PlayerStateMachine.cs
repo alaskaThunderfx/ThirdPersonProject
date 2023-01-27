@@ -21,7 +21,6 @@ namespace StateMachines.Player
         [field: SerializeField] public float RotationDamping { get; private set; }
         [field: SerializeField] public float DodgeDuration { get; private set; }
         [field: SerializeField] public float DodgeLength { get; private set; }
-        [field: SerializeField] public float DodgeCooldown { get; private set; }
         [field: SerializeField] public float JumpForce { get; private set; }
         
         // Public variables
@@ -47,13 +46,7 @@ namespace StateMachines.Player
             Health.OnTakeDamage -= HandleTakeDamage;
             Health.OnDie -= HandleDie;
         }
-        
-        // Public methods
-        public void SetDodgetime(float dodgeTime)
-        {
-            PreviousDodgeTime = dodgeTime;
-        }
-        
+
         // Private methods
         private void HandleDie()
         {
