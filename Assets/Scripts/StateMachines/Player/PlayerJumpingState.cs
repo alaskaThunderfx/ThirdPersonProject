@@ -21,6 +21,8 @@ namespace StateMachines.Player
             _momentum.y = 0;
             
             stateMachine.Animator.CrossFadeInFixedTime(_jumpHash, CrossFadeDuration);
+
+            stateMachine.LedgeDetector.OnLedgeDetect += HandleLedgeDetect;
         }
 
         public override void Tick(float deltaTime)
@@ -38,6 +40,12 @@ namespace StateMachines.Player
 
         public override void Exit()
         {
+            stateMachine.LedgeDetector.OnLedgeDetect += HandleLedgeDetect;
+        }
+
+        private void HandleLedgeDetect(Vector3 ledgeForward)
+        {
+            stateMachine.SwitchState(new PlayerHangingState(stateMachine, ledgeForward));
         }
     }
 }

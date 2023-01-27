@@ -5,21 +5,33 @@ namespace StateMachines.Player
     public class PlayerFreeLookState : PlayerBaseState
     {
         // Private variables
+        private bool _shouldFade;
         private readonly int _freeLookSpeedHash = Animator.StringToHash("FreeLookSpeed");
         private readonly int _freeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
         private const float AnimatorDampTime = 0.1f;
         private const float CrossFadeDuration = 0.1f;
 
-        public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
+        public PlayerFreeLookState(PlayerStateMachine stateMachine, bool shouldFade = true) : base(stateMachine)
         {
+            _shouldFade = shouldFade;
         }
 
         public override void Enter()
         {
             stateMachine.InputReader.TargetEvent += OnTarget;
             stateMachine.InputReader.JumpEvent += OnJump;
+            
+            stateMachine.Animator.SetFloat(_freeLookSpeedHash, 0);
 
-            stateMachine.Animator.CrossFadeInFixedTime(_freeLookBlendTreeHash, CrossFadeDuration);
+            if (_shouldFade)
+            {
+                stateMachine.Animator.CrossFadeInFixedTime(_freeLookBlendTreeHash, CrossFadeDuration);
+            }
+            else
+            {
+                stateMachine.Animator.Play(_freeLookBlendTreeHash);
+            }
+            
         }
 
         public override void Tick(float deltaTime)

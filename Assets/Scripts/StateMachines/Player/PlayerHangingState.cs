@@ -7,7 +7,7 @@ namespace StateMachines.Player
         private Vector3 _ledgeForward;
         private readonly int _hangingHash = Animator.StringToHash("Hanging");
         private const float CrossFadeDuration = 0.1f;
-        
+
         public PlayerHangingState(PlayerStateMachine stateMachine, Vector3 ledgeForward) : base(stateMachine)
         {
             _ledgeForward = ledgeForward;
@@ -16,13 +16,18 @@ namespace StateMachines.Player
         public override void Enter()
         {
             stateMachine.transform.rotation = Quaternion.LookRotation(_ledgeForward, Vector3.up);
-            
+
             stateMachine.Animator.CrossFadeInFixedTime(_hangingHash, CrossFadeDuration);
         }
 
         public override void Tick(float deltaTime)
         {
-            if (stateMachine.InputReader.MovementValue.y < 0f)
+            if (stateMachine.InputReader.MovementValue.y > 0f)
+            {
+                stateMachine.SwitchState(new PlayerPullUpState(stateMachine));
+            }
+
+            else if (stateMachine.InputReader.MovementValue.y < 0f)
             {
                 stateMachine.CharacterController.Move(Vector3.zero);
                 stateMachine.ForceReceiver.Reset();
@@ -32,7 +37,6 @@ namespace StateMachines.Player
 
         public override void Exit()
         {
-            
         }
     }
 }
