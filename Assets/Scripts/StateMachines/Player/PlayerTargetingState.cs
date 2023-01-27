@@ -16,7 +16,7 @@ namespace StateMachines.Player
 
         public override void Enter()
         {
-            stateMachine.InputReader.CancelEvent += OnCancel;
+            stateMachine.InputReader.TargetEvent += OnTarget;
             stateMachine.InputReader.DodgeEvent += OnDodge;
             stateMachine.InputReader.JumpEvent += OnJump;
 
@@ -54,14 +54,14 @@ namespace StateMachines.Player
 
         public override void Exit()
         {
-            stateMachine.InputReader.CancelEvent -= OnCancel;
+            stateMachine.InputReader.TargetEvent -= OnTarget;
             stateMachine.InputReader.DodgeEvent -= OnDodge;
             stateMachine.InputReader.JumpEvent -= OnJump;
         }
 
 
         // Private methods
-        private void OnCancel()
+        private void OnTarget()
         {
             stateMachine.Targeter.Cancel();
 

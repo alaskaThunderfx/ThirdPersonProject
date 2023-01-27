@@ -31,6 +31,9 @@ namespace StateMachines.Player
         // Unity built-in methods
         private void Start()
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            
             if (Camera.main != null) MainCameraTransform = Camera.main.transform;
 
             SwitchState(new PlayerFreeLookState(this));

@@ -22,7 +22,7 @@ namespace StateMachines.Player
             Move(deltaTime);
             FaceTarget();
 
-            var normalizedTime = GetNormalizedTime(stateMachine.Animator);
+            var normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");
 
             if (normalizedTime < 1)
             {
