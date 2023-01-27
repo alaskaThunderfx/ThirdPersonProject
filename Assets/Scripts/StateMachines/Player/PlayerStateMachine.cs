@@ -22,6 +22,7 @@ namespace StateMachines.Player
         [field: SerializeField] public float DodgeDuration { get; private set; }
         [field: SerializeField] public float DodgeLength { get; private set; }
         [field: SerializeField] public float DodgeCooldown { get; private set; }
+        [field: SerializeField] public float JumpForce { get; private set; }
         
         // Public variables
         public Transform MainCameraTransform { get; private set; }

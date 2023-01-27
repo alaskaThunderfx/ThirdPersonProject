@@ -17,6 +17,7 @@ namespace StateMachines.Player
         public override void Enter()
         {
             stateMachine.InputReader.TargetEvent += OnTarget;
+            stateMachine.InputReader.JumpEvent += OnJump;
 
             stateMachine.Animator.CrossFadeInFixedTime(_freeLookBlendTreeHash, CrossFadeDuration);
         }
@@ -47,6 +48,7 @@ namespace StateMachines.Player
         public override void Exit()
         {
             stateMachine.InputReader.TargetEvent -= OnTarget;
+            stateMachine.InputReader.JumpEvent -= OnJump;
         }
 
         // Private methods
@@ -55,6 +57,11 @@ namespace StateMachines.Player
             if (!stateMachine.Targeter.SelectTarget()) return;
 
             stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
+        }
+
+        private void OnJump()
+        {
+            stateMachine.SwitchState(new PlayerJumpingState(stateMachine));
         }
 
         private Vector3 CalculateMovement()

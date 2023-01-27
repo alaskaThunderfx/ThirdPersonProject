@@ -420,6 +420,7 @@ MonoBehaviour:
   <DodgeDuration>k__BackingField: 0.1
   <DodgeLength>k__BackingField: 0.75
   <DodgeCooldown>k__BackingField: 1
+  <JumpForce>k__BackingField: 4
 --- !u!114 &717743622113578609
 MonoBehaviour:
   m_ObjectHideFlags: 0
