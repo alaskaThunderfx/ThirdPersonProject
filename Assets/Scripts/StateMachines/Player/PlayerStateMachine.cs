@@ -13,16 +13,19 @@ namespace StateMachines.Player
         [field: SerializeField] public Targeter Targeter { get; private set; }
         [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
         [field: SerializeField] public Attack[] Attacks { get; private set; }
-        [field: SerializeField] public WeaponDamage Weapon  { get; private set; }
-        [field: SerializeField] public Health Health  { get; private set; }
-        [field: SerializeField] public Ragdoll Ragdoll  { get; private set; }
+        [field: SerializeField] public WeaponDamage Weapon { get; private set; }
+        [field: SerializeField] public Health Health { get; private set; }
+        [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
         [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
         [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
         [field: SerializeField] public float RotationDamping { get; private set; }
-        
+        [field: SerializeField] public float DodgeDuration { get; private set; }
+        [field: SerializeField] public float DodgeLength { get; private set; }
+        [field: SerializeField] public float DodgeCooldown { get; private set; }
         
         // Public variables
         public Transform MainCameraTransform { get; private set; }
+        public float PreviousDodgeTime { get; private set; } = Mathf.NegativeInfinity;
 
         // Unity built-in methods
         private void Start()
@@ -31,7 +34,7 @@ namespace StateMachines.Player
 
             SwitchState(new PlayerFreeLookState(this));
         }
-        
+
         private void OnEnable()
         {
             Health.OnTakeDamage += HandleTakeDamage;
@@ -43,7 +46,14 @@ namespace StateMachines.Player
             Health.OnTakeDamage -= HandleTakeDamage;
             Health.OnDie -= HandleDie;
         }
-
+        
+        // Public methods
+        public void SetDodgetime(float dodgeTime)
+        {
+            PreviousDodgeTime = dodgeTime;
+        }
+        
+        // Private methods
         private void HandleDie()
         {
             SwitchState(new PlayerDeadState(this));
@@ -53,6 +63,7 @@ namespace StateMachines.Player
         {
             SwitchState(new PlayerImpactState(this));
         }
+        
         
     }
 }
